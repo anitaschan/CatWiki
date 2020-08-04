@@ -6,17 +6,17 @@ const useTop = (topCount, setImgUrls) => {
   const [state] = useContext(Context);
   const catArray = Object.values(state);
 
-  catArray.sort((a, b) => {
-    return a.searchCount - b.searchCount;
-  });
-
-  const TopCats = catArray.splice(0, topCount).map((breed) => {
-    return breed.id;
-  });
-
   useEffect(() => {
     const getImgUrls = async () => {
       if (Object.keys(state).length !== 0) {
+        catArray.sort((a, b) => {
+          return a.searchCount - b.searchCount;
+        });
+
+        const TopCats = catArray.splice(0, topCount).map((breed) => {
+          return breed.id;
+        });
+
         const idArray = TopCats.map(async (id) => {
           return doRequest("images/search?breed_id=" + id);
         });

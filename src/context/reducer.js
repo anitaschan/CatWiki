@@ -9,7 +9,6 @@ const Reducer = (state, { type, payload }) => {
       };
 
     case "INITIALISE_STATE":
-      console.log("payload", payload);
       return { ...state, ...payload };
     default:
       return state;
